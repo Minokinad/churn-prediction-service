@@ -1,0 +1,10 @@
+data/*.csv
+data/*.parquet
+models/*.pkl
+models/*.catboost
+
+__pycache__/
+.venv/
+.env
+
+.ipynb_checkpoints
