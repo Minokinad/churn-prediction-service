@@ -2,6 +2,8 @@ data/*.csv
 data/*.parquet
 models/*.pkl
 models/*.catboost
+models/*.joblib
+notebooks/catboost_info
 
 __pycache__/
 .venv/
