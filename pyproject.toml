@@ -4,6 +4,7 @@ version = "0.1.0"
 description = "Add your description here"
 requires-python = ">=3.12"
 dependencies = [
+    "altair<5",
     "catboost>=1.2.10",
     "fastapi>=0.133.1",
     "ipykernel>=7.2.0",
@@ -15,5 +16,7 @@ dependencies = [
     "scikit-learn>=1.8.0",
     "scipy-stubs~=1.17.1",
     "seaborn>=0.13.2",
+    "setuptools>=82.0.0",
+    "streamlit>=1.19.0",
     "uvicorn>=0.41.0",
 ]

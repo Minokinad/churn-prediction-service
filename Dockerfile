@@ -13,4 +13,6 @@ COPY models/ ./models/
 
 ENV PYTHONPATH=/app
 
-CMD ["uv", "run", "python", "src/predict.py"]
+EXPOSE 8501
+
+CMD ["uv", "run", "streamlit", "run", "src/app.py", "--server.port=8501", "--server.address=0.0.0.0"]
