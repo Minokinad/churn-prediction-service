@@ -2,7 +2,7 @@
 name = "churn-prediction-service"
 version = "0.1.0"
 description = "Add your description here"
-requires-python = ">=3.13"
+requires-python = ">=3.12"
 dependencies = [
     "catboost>=1.2.10",
     "fastapi>=0.133.1",
