@@ -1,4 +1,6 @@
 import pandas as pd
+from sklearn.compose import ColumnTransformer
+from sklearn.preprocessing import OneHotEncoder, StandardScaler
 
 def clean_data(df: pd.DataFrame) -> pd.DataFrame:
     df = df.copy()
@@ -25,3 +27,19 @@ def clean_data(df: pd.DataFrame) -> pd.DataFrame:
     if 'Churn' in df.columns:
         df['Churn'] = df['Churn'].map({'No':0, 'Yes':1})
     return df
+
+def get_preprocessing_pipeline(num_features, cat_features):
+    num_transformer = StandardScaler()
+
+    cat_transformer = OneHotEncoder(
+        drop='first',
+        sparse_output=False,
+        handle_unknown='ignore'
+    )
+
+    preprocessor = ColumnTransformer(transformers=[
+        ('num', cat_transformer, cat_features),
+        ('cat', num_transformer, num_features)
+    ])
+
+    return preprocessor
