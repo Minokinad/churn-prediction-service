@@ -1,3 +1,4 @@
+import numpy as np
 import pandas as pd
 from sklearn.compose import ColumnTransformer
 from sklearn.preprocessing import OneHotEncoder, StandardScaler
@@ -43,3 +44,20 @@ def get_preprocessing_pipeline(num_features, cat_features):
     ])
 
     return preprocessor
+
+def add_features(df: pd.DataFrame) -> pd.DataFrame:
+    df = df.copy()
+
+    df['tenure_group'] = pd.cut(df['tenure'],
+                                bins = [0, 5.5, 16.5, 49.5, np.inf],
+                                labels=['Newbie', 'Early Stage', 'Stable', 'Loyal'])
+
+    security_cols = ['OnlineSecurity', 'OnlineBackup', 'DeviceProtection', 'TechSupport']
+    df['has_security'] = (df[security_cols] == 'Yes').any(axis=1).astype(int)
+
+    service_cols = (security_cols +
+                    ['PhoneService', 'MultipleLines',
+                     'StreamingTV', 'StreamingMovies'])
+    df['total_services'] = (df[service_cols] == 'Yes').sum(axis=1)
+
+    return df
